@@ -53,31 +53,52 @@ const Library = ({ selectedBooks, onSelectBook }) => {
 };
 
 const Checkout = ({ selectedBooks }) => {
+  const total = selectedBooks.reduce((total, book) => total + parseFloat(book.price), 0);
+  const discount = total > 50 ? total * 0.1 : 0;
+  const finalTotal = total - discount;
+
   return (
-    <table className="table w-full">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>ISBN</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {selectedBooks.map((book) => (
-          <tr key={book.id}>
-            <td>{book.title}</td>
-            <td>{book.author}</td>
-            <td>{book.isbn}</td>
-            <td>${book.price}</td>
+    <>
+      {total > 50 && (
+        <div className="toast toast-top toast-end">
+          <div className="alert alert-info">A 10% discount has been applied!</div>
+        </div>
+      )}
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Price</th>
           </tr>
-        ))}
-        <tr>
-          <td colSpan="3">Total Price</td>
-          <td>${selectedBooks.reduce((total, book) => total + parseFloat(book.price), 0).toFixed(2)}</td>
-        </tr>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {selectedBooks.map((book) => (
+            <tr key={book.id}>
+              <td>{book.title}</td>
+              <td>{book.author}</td>
+              <td>{book.isbn}</td>
+              <td>${book.price}</td>
+            </tr>
+          ))}
+          <tr>
+            <td colSpan="3">Total Price</td>
+            <td>${total.toFixed(2)}</td>
+          </tr>
+          {discount > 0 && (
+            <tr>
+              <td colSpan="3">Discount</td>
+              <td>-${discount.toFixed(2)}</td>
+            </tr>
+          )}
+          <tr>
+            <td colSpan="3">Final Total</td>
+            <td>${finalTotal.toFixed(2)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </>
   );
 };
 
