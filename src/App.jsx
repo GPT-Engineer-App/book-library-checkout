@@ -23,7 +23,7 @@ const fetchBooks = () =>
     { id: 10, title: "Book Ten", author: "Author J", isbn: "123465", price: "55.00" },
   ]);
 
-const Library = ({ onSelectBook }) => {
+const Library = ({ selectedBooks, onSelectBook }) => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Library = ({ onSelectBook }) => {
             <div className="card-actions justify-end">
               <label className="label cursor-pointer">
                 <span className="label-text">Select</span>
-                <input type="checkbox" className="checkbox" onChange={() => onSelectBook(book)} />
+                <input type="checkbox" className="checkbox" checked={selectedBooks.some((b) => b.id === book.id)} onChange={() => onSelectBook(book)} />
               </label>
             </div>
           </div>
@@ -102,7 +102,7 @@ function App() {
           <FaShoppingCart /> Checkout
         </a>
       </div>
-      <div className="content">{activeTab === "library" ? <Library onSelectBook={handleSelectBook} /> : <Checkout selectedBooks={selectedBooks} />}</div>
+      <div className="content">{activeTab === "library" ? <Library selectedBooks={selectedBooks} onSelectBook={handleSelectBook} /> : <Checkout selectedBooks={selectedBooks} />}</div>
     </div>
   );
 }
