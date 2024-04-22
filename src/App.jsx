@@ -72,6 +72,10 @@ const Checkout = ({ selectedBooks }) => {
             <td>${book.price}</td>
           </tr>
         ))}
+        <tr>
+          <td colSpan="3">Total Price</td>
+          <td>${selectedBooks.reduce((total, book) => total + parseFloat(book.price), 0).toFixed(2)}</td>
+        </tr>
       </tbody>
     </table>
   );
