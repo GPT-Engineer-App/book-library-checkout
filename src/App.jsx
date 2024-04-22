@@ -73,18 +73,8 @@ const Checkout = ({ selectedBooks }) => {
           </tr>
         ))}
         <tr>
-          <td colSpan="3">Total Price (Discount Applied if {'>'} $50)</td>
-          <td>
-            $
-            {selectedBooks.reduce((total, book) => {
-              const updatedTotal = total + parseFloat(book.price);
-              if (updatedTotal > 50) {
-                alert("A 10% discount has been applied!");
-                return (updatedTotal * 0.9).toFixed(2);
-              }
-              return updatedTotal.toFixed(2);
-            }, 0)}
-          </td>
+          <td colSpan="3">Total Price</td>
+          <td>${selectedBooks.reduce((total, book) => total + parseFloat(book.price), 0).toFixed(2)}</td>
         </tr>
       </tbody>
     </table>
