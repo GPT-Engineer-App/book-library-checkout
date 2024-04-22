@@ -98,7 +98,7 @@ function App() {
         <a className={`tab tab-lifted ${activeTab === "library" ? "tab-active" : ""}`} onClick={() => setActiveTab("library")}>
           <FaBook /> Library
         </a>
-        <a className={`tab tab-lifted ${activeTab === "checkout" ? "tab-active" : ""}`} onClick={() => setActiveTab("checkout")}>
+        <a className={`tab tab-lifted ${activeTab === "checkout" ? "tab-active" : ""} ${selectedBooks.length === 0 ? "disabled" : ""}`} onClick={() => selectedBooks.length > 0 && setActiveTab("checkout")}>
           <FaShoppingCart /> Checkout
         </a>
       </div>
