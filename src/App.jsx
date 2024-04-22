@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { FaBook, FaShoppingCart } from "react-icons/fa";
 
 // Placeholder for the actual imports
@@ -12,6 +13,14 @@ const fetchBooks = () =>
   Promise.resolve([
     { id: 1, title: "Book One", author: "Author A", isbn: "123456", price: "10.00" },
     { id: 2, title: "Book Two", author: "Author B", isbn: "123457", price: "15.00" },
+    { id: 3, title: "Book Three", author: "Author C", isbn: "123458", price: "20.00" },
+    { id: 4, title: "Book Four", author: "Author D", isbn: "123459", price: "25.00" },
+    { id: 5, title: "Book Five", author: "Author E", isbn: "123460", price: "30.00" },
+    { id: 6, title: "Book Six", author: "Author F", isbn: "123461", price: "35.00" },
+    { id: 7, title: "Book Seven", author: "Author G", isbn: "123462", price: "40.00" },
+    { id: 8, title: "Book Eight", author: "Author H", isbn: "123463", price: "45.00" },
+    { id: 9, title: "Book Nine", author: "Author I", isbn: "123464", price: "50.00" },
+    { id: 10, title: "Book Ten", author: "Author J", isbn: "123465", price: "55.00" },
   ]);
 
 const Library = ({ onSelectBook }) => {
